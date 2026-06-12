@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVault</title>
+
+    <!-- Premium Editorial Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="cinematic-backdrop"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <span class="nav-brand">CineVault.</span>
+        <span class="nav-tag">Edition / 2026</span>
+    </nav>
+
+    <main class="main-viewport">
+
+        <div class="editorial-grid">
+
+            <!-- Left Side -->
+            <header class="hero-header">
+                <h1 class="main-title">
+                    Every Story.<br>
+                    Uncovered.
+                </h1>
+
+                <p class="hero-subtitle">
+                    Explore curated cinematic data, deep-dive aesthetics,
+                    and instant industry insights with an uncompromising interface.
+                </p>
+            </header>
+
+            <!-- Right Side -->
+            <section class="interaction-block">
+
+                <form method="POST" class="search-form">
+
+                    <div class="input-wrapper">
+
+                        <label class="input-label" for="movie-search">
+                            Discover Cinema
+                        </label>
+
+                        <input
+                            id="movie-search"
+                            name="movie"
+                            type="text"
+                            class="search-input"
+                            placeholder="Enter movie name..."
+                            required
+                        >
+
+                        <div class="animated-underline"></div>
+
+                    </div>
+
+                    <button type="submit" class="action-btn">
+
+                        <span>Search Database</span>
+
+                        <svg class="arrow-icon"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2">
+
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+
+                            <polyline points="12 5 19 12 12 19"></polyline>
+
+                        </svg>
+
+                    </button>
+
+                </form>
+
+                <!-- Flask Output -->
+                {% if movie %}
+
+                <div class="movie-preview">
+                    <img
+                    src="{{ movie.Poster }}"
+                    alt="{{ movie.Title }} Poster"
+                    class="movie-poster"
+                    >
+
+                    <h2>{{ movie.Title }}</h2>
+
+                    <p><strong>IMDb Rating:</strong> ⭐ {{ movie.imdbRating }}</p>
+
+                    <p><strong>Runtime:</strong> ⏱ {{ movie.Runtime }}</p>
+
+                    <p><strong>Year:</strong> {{ movie.Year }}</p>
+
+                    <p><strong>Genre:</strong> {{ movie.Genre }}</p>
+
+                    <p><strong>Director:</strong> {{ movie.Director }}</p>
+
+                    <p><strong>Plot:</strong> {{ movie.Plot }}</p>
+
+
+                </div>
+
+                {% endif %}
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
