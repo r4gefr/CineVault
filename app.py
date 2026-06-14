@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request
+from dotenv import load_dotenv
 import requests
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 
-api_key = "451f5044"
+api_key = os.getenv("OMDB_API_KEY")
 
 @app.route("/", methods=["GET", "POST"])
 def home():
