@@ -98,15 +98,21 @@
 
                     <h2>{{ movie.Title }}</h2>
 
-                    <p><strong>IMDb Rating:</strong> ⭐ {{ movie.imdbRating }}</p>
-
-                    <p><strong>Runtime:</strong> ⏱ {{ movie.Runtime }}</p>
+                    <p>
+                    ⭐ {{ movie.imdbRating }}
+                    •
+                    🗳️ {{ movie.formatted_votes }} votes
+                    •
+                    ⏱ {{ movie.Runtime }}
+                    </p>
 
                     <p><strong>Year:</strong> {{ movie.Year }}</p>
 
                     <p><strong>Genre:</strong> {{ movie.Genre }}</p>
 
                     <p><strong>Director:</strong> {{ movie.Director }}</p>
+
+                    <p><strong>Cast:</strong> 🎭 {{ movie.get('Actors', 'Not Available') }}</p>
 
                     <p><strong>Plot:</strong> {{ movie.Plot }}</p>
 

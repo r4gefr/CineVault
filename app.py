@@ -9,6 +9,19 @@ app = Flask(__name__)
 
 api_key = os.getenv("OMDB_API_KEY")
 
+def format_votes(votes):
+    votes = int(votes.replace(",", ""))
+
+    if votes >= 1_000_000:
+        value = f"{votes / 1_000_000:.1f}".rstrip("0").rstrip(".")
+        return f"{value}M"
+
+    elif votes >= 1_000:
+        value = f"{votes / 1_000:.1f}".rstrip("0").rstrip(".")
+        return f"{value}K"
+
+    return str(votes)
+
 @app.route("/", methods=["GET", "POST"])
 def home():
 
@@ -27,6 +40,7 @@ def home():
             data = response.json()
 
             if data["Response"] == "True":
+                data["formatted_votes"] = format_votes(data["imdbVotes"])
                 movie = data
 
         except requests.RequestException:
