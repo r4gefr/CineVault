@@ -105,6 +105,12 @@ This project demonstrates:
 
 ---
 
+## Live Demo
+
+https://cinevault-3004.onrender.com
+
+---
+
 ## Screenshots
 
 ![alt text](image.png)
