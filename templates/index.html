@@ -86,41 +86,6 @@
 
                 </form>
 
-                <!-- Flask Output -->
-                {% if movie %}
-
-                <div class="movie-preview">
-                    <img
-                    src="{{ movie.Poster }}"
-                    alt="{{ movie.Title }} Poster"
-                    class="movie-poster"
-                    >
-
-                    <h2>{{ movie.Title }}</h2>
-
-                    <p>
-                    ⭐ {{ movie.imdbRating }}
-                    •
-                    🗳️ {{ movie.formatted_votes }} votes
-                    •
-                    ⏱ {{ movie.Runtime }}
-                    </p>
-
-                    <p><strong>Year:</strong> {{ movie.Year }}</p>
-
-                    <p><strong>Genre:</strong> {{ movie.Genre }}</p>
-
-                    <p><strong>Director:</strong> {{ movie.Director }}</p>
-
-                    <p><strong>Cast:</strong> 🎭 {{ movie.get('Actors', 'Not Available') }}</p>
-
-                    <p><strong>Plot:</strong> {{ movie.Plot }}</p>
-
-
-                </div>
-
-                {% endif %}
-
             </section>
 
         </div>
