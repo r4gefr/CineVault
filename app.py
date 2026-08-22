@@ -11,7 +11,13 @@ api_key = os.getenv("OMDB_API_KEY")
 
 
 def format_votes(votes):
-    votes = int(votes.replace(",", ""))
+    if not votes or votes == "N/A":
+        return "N/A"
+
+    try:
+        votes = int(votes.replace(",", ""))
+    except (ValueError, AttributeError):
+        return "N/A"
 
     if votes >= 1_000_000:
         value = f"{votes / 1_000_000:.1f}".rstrip("0").rstrip(".")
@@ -46,8 +52,9 @@ def home():
 def movie_page(movie_name):
 
     movie = None
+    error = None
 
-    url = f"http://www.omdbapi.com/?t={movie_name}&apikey={api_key}"
+    url = f"https://www.omdbapi.com/?t={movie_name}&apikey={api_key}"
 
     try:
 
@@ -62,12 +69,16 @@ def movie_page(movie_name):
 
             movie = data
 
+        else:
+            error = data.get("Error", "Movie not found.")
+
     except requests.RequestException:
-        pass
+        error = "Unable to connect to the movie database."
 
     return render_template(
         "movie.html",
-        movie=movie
+        movie=movie,
+        error=error
     )
 
 
